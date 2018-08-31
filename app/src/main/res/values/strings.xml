@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ClienteADS18</string>
+    <string name="dica_busca">nome do cliente</string>
+    <string name="btn_busca">Buscar</string>
+</resources>
