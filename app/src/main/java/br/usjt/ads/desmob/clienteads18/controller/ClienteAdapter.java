@@ -40,20 +40,26 @@ public class ClienteAdapter extends BaseAdapter{
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        LayoutInflater inflater = (LayoutInflater)
-                context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View linha = inflater.inflate(R.layout.linha_cliente, viewGroup, false);
-        ImageView fotoCliente = linha.findViewById(R.id.foto_cliente);
-        TextView linhaNome = linha.findViewById(R.id.linha_nome);
-        TextView linhaDetalhe = linha.findViewById(R.id.linha_detalhe);
+        View linha = view;
+        if(linha == null) {
+            LayoutInflater inflater = (LayoutInflater)
+                    context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            linha = inflater.inflate(R.layout.linha_cliente, viewGroup, false);
+            ImageView fotoCliente = linha.findViewById(R.id.foto_cliente);
+            TextView linhaNome = linha.findViewById(R.id.linha_nome);
+            TextView linhaDetalhe = linha.findViewById(R.id.linha_detalhe);
+            ViewHolder holder = new ViewHolder(fotoCliente, linhaNome, linhaDetalhe);
+            linha.setTag(holder);
+        }
 
         Cliente cliente = clientes.get(i);
+        ViewHolder holder = (ViewHolder) linha.getTag();
 
-        linhaNome.setText(cliente.getNome());
-        linhaDetalhe.setText(cliente.getFone() + " - " + cliente.getEmail());
+        holder.getLinha1().setText(cliente.getNome());
+        holder.getLinha2().setText(cliente.getFone() + " - " + cliente.getEmail());
 
         Drawable drawable = Util.getDrawable(context, cliente.getFigura());
-        fotoCliente.setImageDrawable(drawable);
+        holder.getImagem().setImageDrawable(drawable);
 
         return linha;
     }

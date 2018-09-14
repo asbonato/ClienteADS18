@@ -2,4 +2,7 @@
     <string name="app_name">ClienteADS18</string>
     <string name="dica_busca">nome do cliente</string>
     <string name="btn_busca">Buscar</string>
+    <string name="detalhe_nome">nome:</string>
+    <string name="detalhe_fone">fone:</string>
+    <string name="detalhe_email">e-mail:</string>
 </resources>
