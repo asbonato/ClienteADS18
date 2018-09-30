@@ -19,5 +19,5 @@
         <activity android:name=".controller.ListaClientesActivity" />
         <activity android:name=".controller.DetalheClienteActivity"></activity>
     </application>
-
+    <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>

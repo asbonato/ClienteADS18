@@ -6,6 +6,10 @@ public class Cliente implements Serializable {
     private int id;
     private String nome, fone, email;
 
+    public Cliente(){
+
+    }
+
     public Cliente(int id, String nome, String fone, String email) {
         this.id = id;
         this.nome = nome;

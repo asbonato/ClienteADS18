@@ -28,7 +28,7 @@ public class ListaClientesActivity extends Activity {
         setContentView(R.layout.activity_lista_clientes);
         Intent intent = getIntent();
         String chave = intent.getStringExtra(MainActivity.CHAVE);
-        clientes = buscaClientes(chave);
+        clientes = (ArrayList<Cliente>) intent.getSerializableExtra(MainActivity.CLIENTES);
         ListView listView = findViewById(R.id.lista_clientes);
         ClienteAdapter adapter = new ClienteAdapter(clientes, this);
         listView.setAdapter(adapter);
@@ -65,13 +65,8 @@ public class ListaClientesActivity extends Activity {
         }
     }
 
-
     private ArrayList<Cliente> listaClientes(){
-        ArrayList<Cliente> lista = new ArrayList<>();
-        Cliente[] clientes = ClienteDAO.getClientes();
-        for(Cliente cliente: clientes){
-            lista.add(cliente);
-        }
-        return lista;
+        return this.clientes;
     }
+
 }
