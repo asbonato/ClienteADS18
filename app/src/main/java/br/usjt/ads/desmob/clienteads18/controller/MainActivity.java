@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,7 +18,8 @@ import br.usjt.ads.desmob.clienteads18.model.ClienteDAO;
 public class MainActivity extends Activity {
     public static final String CHAVE = "br.usjt.ads.desmob.clienteads18.controller.chave";
     private EditText txtBusca;
-    public static final String URL = "http://192.168.0.15:8080/app_poetas/rest/clientes";
+    public static final String URL = "/rest/clientes";
+    public static final String HOST = "http://192.168.0.15:8080/app_poetas";
     public static final String CLIENTES = "br.usjt.ads.desmob.clienteads18.controller.clientes";
     Intent intent;
 
@@ -32,8 +34,12 @@ public class MainActivity extends Activity {
         intent = new Intent(this, ListaClientesActivity.class);
         String texto = txtBusca.getText().toString();
         intent.putExtra(CHAVE, texto);
-
-        new DownloadClientes().execute(URL);
+        if(ClienteDAO.isConnected(this)) {
+            new DownloadClientes().execute(HOST + URL);
+        } else {
+            Toast toast = Toast.makeText(this, "Rede indisponível!", Toast.LENGTH_LONG);
+            toast.show();
+        }
 
     }
 

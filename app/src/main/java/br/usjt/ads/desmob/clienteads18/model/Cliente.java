@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Cliente implements Serializable {
     private int id;
-    private String nome, fone, email;
+    private String nome, fone, email, figura;
 
     public Cliente(){
 
@@ -50,8 +50,11 @@ public class Cliente implements Serializable {
     }
 
     public String getFigura(){
-        String figura = email.replace('@', '_');
-        return figura.replace('.','_');
+        return this.figura;
+    }
+
+    public void setFigura(String figura){
+        this.figura = figura;
     }
 
     @Override
